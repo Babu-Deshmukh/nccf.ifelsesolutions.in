@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FeaturesComponent } from './features/features.component';
-import { AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -14,6 +13,7 @@ const routes: Routes = [
       
         ]
     }
+
 ];
 
 @NgModule({
