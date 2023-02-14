@@ -1,0 +1,36 @@
+<mat-toolbar color="primary" class="top-bar">
+  <span>NCCF ADMIN</span>
+  <button mat-icon-button (click)="sidenav.toggle()" class="menu-button"
+    style="margin-left:54px">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button class="masterButton ml-5" mat-stroked-button routerLink="./master">
+    <span style="margin-top:5px"> Master</span>
+  </button>
+  <div fxFlex fxLayoutAlign="flex-end center">
+    <span class="fill-remaining-space">
+      <button mat-icon-button class="log_button">
+        <mat-icon>logout</mat-icon>
+      </button>
+      <!-- <mat-menu #menu="matMenu" [overlapTrigger]="false">
+        <span (mouseleave)="menuTrigger.closeMenu()">
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+          </button>
+        </span>
+      </mat-menu> -->
+    </span>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [opened]="opened">
+    <mat-nav-list style="overflow-x: auto">
+      <app-menu-list-item *ngFor="let item of menu; let i = index" [item]="item" [statusLink]='statusLink'>
+      </app-menu-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

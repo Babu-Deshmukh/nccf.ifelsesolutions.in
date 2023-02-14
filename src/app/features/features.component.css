@@ -1,0 +1,41 @@
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height: 92vh;
+}
+
+.mat-sidenav {
+  width: 220px;
+}
+
+button.menu-button {
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.top-bar{
+  height:45px
+}
+::-webkit-scrollbar {
+  width: 0px !important;
+  background: transparent !important; /* make scrollbar transparent */
+}
+.fill-remaining-space{
+  padding-left: 1%;
+  cursor: pointer;
+}
+.log_button{
+  cursor: pointer;
+}
+
+.masterButton{
+  border:1px solid white;
+  background: steelblue;
+}
+
+.masterButton:hover{
+  border:1px solid white;
+  background: rgb(1, 76, 138);
+  transition-duration: 0.6s;
+}
