@@ -1,0 +1,28 @@
+export interface liveData {
+    "idBidList": number,
+    "bidlistCode": string
+    "auctionType": string,
+    "reservePrice": number,
+    "priceUnit": string,
+    "tickSize": number,
+    "totalQuantity": number,
+    "minimumQty": number,
+    "totalQuantityUnit": string,
+    "minIncrementalQty": number,
+    "perQuantityUnit": string,
+    "startDateTime": string,
+    "endDateTime": string,
+    "emdValue": number,
+    "emdUnit": string,
+    "warehouseName": string,
+    "warehouseAddress": string,
+    "confirmationStatus": string,
+    "confirmationRemark": string,
+    "aggregatorName": string,
+    "addedBy": string,
+    "isApproved": number,
+    "insertDate": string,
+    "stateName": string,
+    "commodityMasterId": number,
+    "commodityImage": string
+}

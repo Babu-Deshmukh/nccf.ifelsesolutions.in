@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUserServiceUrl: 'http://remotehost',
-  baseGeoServiceUrl: 'http://remotehost'
+  environmentName: 'Agribid India',
+  Base_URL : 'https://api.agribidindia.com/'
 };

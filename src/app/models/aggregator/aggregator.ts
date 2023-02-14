@@ -1,0 +1,43 @@
+export interface Aggregator {
+    "idAggregatorData": number,
+    "agentId": string,
+    "principalAgentId": number,
+    "agentName": string,
+    "aggregatorType": string,
+    "eMailId": string,
+    "mobileNumber": string,
+    "contactPerson": string,
+    "gstNumber": string,
+    "pinCode": number,
+    "country": string,
+    "aadharCard": string,
+    "aadharUrl": number,
+    "panCard": number,
+    "panUrl": number,
+    "cinNumber": string,
+    "registrationDate": string,
+    "numberOfDirectors": number,
+    "numberOfMembers": number,
+    "address": string,
+    "bankName": number,
+    "bankBranchName": number,
+    "bankAccountNumber": number,
+    "ifscCode": number,
+    "chequeCopy": number,
+    "insertDate": string,
+    "isActive": number,
+    "city": string,
+    "state": string,
+    "cityMasterIdCityMaster": number,
+    "cityMasterStateMasterIdStateMaster": number,
+    "password": string,
+    "aggregatorDataId": number
+}
+
+export interface AggregatorByType {
+    "idAggregatorData": number,
+    "agentId": string,
+    "agentName": string,
+    "cityName": string,
+    "stateName": string
+}

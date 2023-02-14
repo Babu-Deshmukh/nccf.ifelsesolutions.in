@@ -1,36 +1,140 @@
-<div fxFlex fxLayout="column" fxLayoutGap="0px">
-  <div fxLayout="row wrap">
-    <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column">
-      <div fxLayoutAlign="center">
-        <img style="margin-top:30px" src="/assets/img/logo/careydevelopment-logo-sm.png" />
-      </div>
+<body>
+	<section class="center" *ngIf="loginFormdisplay" [@fadeInAnimation]>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<img class="image" src="../../assets/img/barley-ge06172d32_1920.jpg">
+				</div>
+				<div class="col-lg-7" style="margin-left:-10px">
+					<div class="container text-center">
+						<img src="../../assets/img/logo.png" class="logo-image">
+					</div>
+					<h5 class="text-center">Welcome To Agribid Admin</h5>
+					<h6 class="text-center">Please Login Below</h6>
+					<form [formGroup]="loginForm" class="loginform">
+						<div [ngStyle]="{'border-bottom':submitted && f.username.errors ? '2px solid red' : '2 px solid #adadad' }"
+							class="txt-field">
+							<input type="text" formControlName="username" required>
+							<span></span>
+							<label [ngClass]="{'text-danger': submitted && f.username.errors}">User Name</label>
+						</div>
 
-      <div fxLayout="row" fxLayoutAlign="center">
-        <h2 style="margin-top:100px" class="my-primary-text">CRM App</h2>
-      </div>
+						<div [ngStyle]="{'border-bottom':submitted && f.password.errors ? '2px solid red' : '2 px solid #adadad' }"
+							class="txt-field">
+							<input type="Password" formControlName="password" required>
+							<span></span>
+							<label [ngClass]="{'text-danger': submitted && f.password.errors}">Password</label>
+						</div>
+						<div class="pass"><a (click)="forgetPassword()">Forget Password ?</a></div>
+						<button value="Login" class="btn" (click)="login()" [disabled]="!loginForm.valid || submitted" >Login</button>
+						<!-- <div class="sinup_link">
+							Not a member? <a href="#" class="signup">Signup</a>
+						</div> -->
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
 
-      <div fxLayout="row" fxLayoutAlign="center">
-        <img src="/assets/img/vector/office-env2.jpg" />
-      </div>
+	<div class="center-form" *ngIf="forgetPasswordform" [@fadeInAnimation]>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="container text-center">
+						<img src="../../assets/img/logo.png" class="logo-image">
+					</div>
+					<h6 class="text-center">Please Enter Mobile Number</h6>
+					<form [formGroup]="forgetPassWordForm" class="otpForm">
+						<div [ngStyle]="{'border-bottom':submittedTopForm && f2.mobileNumber.errors ? '2px solid red' : '2 px solid #adadad' }"
+							class="txt-field">
+							<input type="text" formControlName="mobileNumber" required>
+							<span></span>
+							<label [ngClass]="{'text-danger': submittedTopForm && f2.mobileNumber.errors}">Mobile
+								Number</label>
+						</div>
+						<div *ngIf="submittedTopForm && f2.mobileNumber.invalid" class="alert alert-danger">
+							<div *ngIf="f2.mobileNumber.errors.required">Mobile Number is required.</div>
+						</div>
 
-      <div fxLayout="row" fxLayoutAlign="center">
-        <a href='https://www.freepik.com/vectors/business'>Business vector created by pikisuperstar - www.freepik.com</a>
-      </div>
-    </div>
 
-    <div fxFlex="50" fxFlex.lt-md="100" fxLayout="column" class="mat-app-background">
-      <div fxLayout="column" fxLayoutAlign="center" style="margin-top:30px">
-        <div fxLayout="row" fxLayoutAlign="center">
-          <h3>Welcome to the CRM App</h3>
-        </div>
+						<div *ngIf="optSentSuccessfully"
+							[ngStyle]="{'border-bottom':submittedOTP && f2.otp.errors ? '2px solid red' : '2 px solid #adadad' }"
+							class="txt-field">
+							<input type="Password" formControlName="otp" required>
+							<span></span>
+							<label [ngClass]="{'text-danger': submittedOTP && f2.otp.errors}">OTP</label>
+						</div>
+						<div *ngIf="submittedOTP && f2.otp.invalid" class="alert alert-danger">
+							<div *ngIf="f2.otp.errors.required">Please Enter OTP.</div>
+						</div>
+						<button class="btn mb-4" *ngIf="showResendTOP" (click)="resendOTP()">Resend OTP</button>
+						<div class="form-group fg--search">
+							<div class="row">
+								<div class="col-md-6">
+									<button class="btn" (click)="backTOLogin()">
+										<span>Back</span>
+									</button>
+								</div>
+								<div class="col-md-6" *ngIf="!showsubmitButton">
+									<button class="btn" [disabled]="!forgetPassWordForm.valid || submittedTopForm" (click)="sendOTP()">Next</button>
 
-        <div fxLayout="row" fxLayoutAlign="center">
-          <h4>Please sign in below</h4>
-        </div>
-      </div>
+								</div>
+								<div class="col-md-6" *ngIf="showsubmitButton">
+									<button class="btn" (click)="verifyOTP()">Submit</button>
+								</div>
+							</div>
+						</div>
 
-      <mat-short-vertical-login></mat-short-vertical-login>
-      
-    </div>
-  </div> 
-</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="center-form" *ngIf="passWordform" [@fadeInAnimation]>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="container text-center">
+						<img src="../../assets/img/logo.png" class="logo-image">
+					</div>
+					<form [formGroup]="passWordForm">
+						<div [ngStyle]="{'border-bottom':submittedPassWordForm && f3.password.errors ? '2px solid red' : '2 px solid #adadad' }"
+							class="txt-field">
+							<input type="text" formControlName="password" required>
+							<span></span>
+							<label [ngClass]="{'text-danger': submittedPassWordForm && f3.password.errors}">Password</label>
+						</div>
+						<div *ngIf="submittedPassWordForm && f3.password.invalid" class="alert alert-danger">
+							<div *ngIf="f3.password.errors.required">Password is required.</div>
+						</div>
+
+
+						<div *ngIf="optSentSuccessfully"
+							[ngStyle]="{'border-bottom':submittedPassWordForm && f3.confirmPassword.errors ? '2px solid red' : '2 px solid #adadad' }"
+							class="txt-field">
+							<input type="Password" formControlName="confirmPassword" required>
+							<span></span>
+							<label [ngClass]="{'text-danger': submittedPassWordForm && f3.confirmPassword.errors}">Confirm Password</label>
+						</div>
+						<div *ngIf="submittedPassWordForm && f3.confirmPassword.invalid" class="alert alert-danger">
+							<div *ngIf="f3.confirmPassword.errors.required">Confirm Password is required.</div>
+							<div *ngIf="f3.confirmPassword.errors.confirmedValidator">Password and Confirm Password must be same.</div>
+						</div>
+						<div class="form-group fg--search">
+							<div class="row">
+								<div class="col-md-6">
+									<button (click)="backTOLogin()" class="btn">Login</button>
+								</div>
+								<div class="col-md-6">
+									<button class="btn" (click)="submitPassWord()">Next</button>
+								</div>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
