@@ -10,10 +10,6 @@ export const routes = [
   {
     path: '',
     component: DashboardComponent,
-    pathMatch: 'full',
-    data: {
-      breadcrumb: 'Dashboard'
-    }
   }
 ];
 
